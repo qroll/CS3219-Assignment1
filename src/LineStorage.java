@@ -1,21 +1,19 @@
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Observable;
 
 public class LineStorage extends Observable {
 
     private ArrayList<String> lines = new ArrayList<String>();
     
-    public void insert(String shiftedLine) {
-        lines.add(shiftedLine);
+    public void insert(String newLine) {
+        lines.add(newLine);
         setChanged();
         notifyObservers();
         clearChanged();
     }
 
-    public void insert(Collection<String> shiftedLines) {
-        lines.addAll(shiftedLines);
+    public void insert(int i, String newLine) {
+        lines.add(i, newLine);
         setChanged();
         notifyObservers();
         clearChanged();
@@ -45,10 +43,6 @@ public class LineStorage extends Observable {
         return lines.size();
     }
     
-    public void sort() {
-        Collections.sort(lines);
-    }
-
     public String toString() {
         String result = "";
         for (String s : lines) {
