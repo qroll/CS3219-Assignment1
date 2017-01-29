@@ -7,22 +7,20 @@ public class KWIC {
         TreeSet<String> ignoredWords = new TreeSet<String>();
         LineStorage originalLines = new LineStorage();
         LineStorage shiftedLines = new LineStorage();
-        LineStorage filteredLines = new LineStorage();
-        LineStorage sortedLines = new LineStorage();
 
         // initialise components
         CircularShifter cs = new CircularShifter(shiftedLines);
-        IgnoredKeywordFilter ikf = new IgnoredKeywordFilter(ignoredWords, filteredLines);
-        Alphabetizer alp = new Alphabetizer(sortedLines);
+        IgnoredKeywordFilter ikf = new IgnoredKeywordFilter(ignoredWords, shiftedLines);
+        Alphabetizer alp = new Alphabetizer(shiftedLines);
 
         // register observers
         originalLines.addObserver(cs);
-        shiftedLines.addObserver(ikf);
-        filteredLines.addObserver(alp);
+        cs.addObserver(ikf);
+        ikf.addObserver(alp);
         
         // begin data processing
         Input.read(ignoredWords, originalLines);
-        Output.display(sortedLines);
+        Output.display(shiftedLines);
     }
     
 }

@@ -14,7 +14,7 @@ public class Input {
 
     public static void readLines(LineStorage originalLines, Scanner sc) {
         System.out.println(MESSAGE_ENTER_LINES);
-        while (sc.hasNext()) {
+        while (sc.hasNextLine()) {
             String line = sc.nextLine().trim();
             if (line.isEmpty()) {
                 break;
@@ -25,7 +25,7 @@ public class Input {
 
     public static void readIgnoredKeywords(TreeSet<String> ignoredWords, Scanner sc) {
         System.out.println(MESSAGE_ENTER_IGNORED_KEYWORDS);
-        while (sc.hasNext()) {
+        while (sc.hasNextLine()) {
             String word = sc.nextLine().trim();
             if (word.isEmpty()) {
                 break;

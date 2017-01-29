@@ -9,14 +9,12 @@ public class LineStorage extends Observable {
         lines.add(newLine);
         setChanged();
         notifyObservers();
-        clearChanged();
     }
 
     public void insert(int i, String newLine) {
         lines.add(i, newLine);
         setChanged();
         notifyObservers();
-        clearChanged();
     }
     
     public void delete(int i) {

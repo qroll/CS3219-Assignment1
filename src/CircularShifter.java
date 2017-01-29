@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class CircularShifter implements Observer {
+public class CircularShifter extends Observable implements Observer {
     
     private LineStorage shiftedLines;
 
@@ -17,6 +17,8 @@ public class CircularShifter implements Observer {
         LinkedList<String> processedLines = circularlyShift(line);
         for (String s : processedLines) {
             shiftedLines.insert(s);
+            setChanged();
+            notifyObservers();
         }
     }
     
@@ -30,7 +32,7 @@ public class CircularShifter implements Observer {
                 shiftedLine += words[index] + " ";
             }
             shiftedLine = shiftedLine.trim();
-            //System.out.println("shifted: " + shiftedLine);
+//            System.out.println("shifted: " + shiftedLine);
             shiftedLines.add(shiftedLine);
         }
         return shiftedLines;

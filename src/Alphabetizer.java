@@ -11,31 +11,24 @@ public class Alphabetizer implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        LineStorage ls = (LineStorage) o;
-        String lastLine = ls.getLast();
-        int index = findInsertionIndex(sortedLines, lastLine);
+        String lastLine = sortedLines.getLast();
+        int index = findInsertionIndex(sortedLines, lastLine.toLowerCase(), 0, sortedLines.size()-1);
+        sortedLines.delete(sortedLines.size() - 1);
         sortedLines.insert(index, lastLine);
     }
 
-    private int findInsertionIndex(LineStorage ls, String key) {
-        String keyInLowercase = key.toLowerCase();
-        int low = 0;
-        int high = ls.size();
-        int mid = (low + high) / 2;
-        
-        while (low < high) {
-            String midVal = ls.get(mid).toLowerCase();
-            if (keyInLowercase.compareTo(midVal) > 0) {
-                low = mid + 1;
-            } else if (keyInLowercase.compareTo(midVal) < 0) {
-                high = mid;
-            } else {
-                break;
-            }
-            mid = (low + high) / 2;
+    private int findInsertionIndex(LineStorage ls, String key, int left, int right) {
+        if (left == right) {
+            return left;
         }
-        if (low == high) {
-            return low;
+
+        int mid = (left + right) / 2;
+        String midVal = ls.get(mid).toLowerCase();
+        
+        if (key.compareTo(midVal) > 0) {
+            return findInsertionIndex(ls, key, mid + 1, right);
+        } else if (key.compareTo(midVal) < 0) {
+            return findInsertionIndex(ls, key, left, mid);
         }
         return mid;
     }
