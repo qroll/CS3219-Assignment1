@@ -1,0 +1,2 @@
+Key in each word to ignore on a new line. To end, enter an empty line.
+Key in each title on a new line. To end, enter an empty line.

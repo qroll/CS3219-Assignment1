@@ -1,0 +1,7 @@
+Key in each word to ignore on a new line. To end, enter an empty line.
+Key in each title on a new line. To end, enter an empty line.
+elapse relapse la lap laps lapse
+lap laps lapse elapse relapse la
+laps lapse elapse relapse la lap
+lapse elapse relapse la lap laps
+relapse la lap laps lapse elapse
